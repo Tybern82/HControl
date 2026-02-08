@@ -64,6 +64,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CommandProcessor\CMDProcessor.csproj" />
+    <ProjectReference Include="..\StateManager\StateMachine.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="Audio\chime-sound-7143.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
