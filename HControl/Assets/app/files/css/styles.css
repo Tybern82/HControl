@@ -1,0 +1,717 @@
+/* Convergence font from Google. */
+@font-face {
+  font-family: 'Convergence';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Convergence-Regular'), url(../font/convergence.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	user-select: none;
+}
+
+html {
+	margin: 0px;
+	min-height: 100%;
+	height: 100%;
+	width: 100%;
+	color: #dddddd;
+	background: #101010;
+	font-family: sans-serif;
+}
+
+body {
+	min-height: 100%;
+	height: fit-content;
+	width: 100%;
+	margin: 0px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 18px;
+	line-height: 1.42857;
+	position: relative;
+}
+
+select {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #000000;
+	background: #dddddd;
+	border-radius: 4px;
+	cursor: pointer;
+	padding: 6px 25px 6px 12px;
+}
+
+h2 {
+	font-size: 30px;
+	font-weight: 500;
+	line-height: 1.1;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	margin: 0px;
+}
+
+p {
+	margin: 0px 0px 10px 0px;
+}
+
+label {
+	font-weight: 700;
+	max-width: 100%;
+	display: inline;
+	padding-top: 7px;
+}
+
+#labelInputFiles {
+	margin-left: 15px;
+}
+
+input {
+	margin-top: 7px;
+}
+
+input[type=button] {
+	background-color: #265a88;
+	background-image: linear-gradient(#805090 0px, #403050 100%);
+	border-color: #5040a0;
+	border-radius: 4px;
+	border-width: 1px;
+	color: #cccccc;
+	cursor: pointer;
+	font-weight: 600;
+	font-size: 14px;
+	text-shadow: #cccccc 0px 1px 0px;
+	padding: 6px 12px 6px 12px;
+}
+
+input[type=button].disabled {
+	background: #343434;
+	border: black;
+	text-shadow: none;
+	cursor: default;
+}
+
+input[type=image] {
+	background-color: #265a88;
+	background-image: linear-gradient(#805090 0px, #403050 100%);
+	border-color: #5040a0;
+	border-radius: 4px;
+	border-width: 1px;
+	color: #cccccc;
+	cursor: pointer;
+}
+
+input[type=number] {
+    width: 50px;
+}
+
+input[type=text] {
+	user-select: text;
+}
+
+input.buttonIncrement {
+	border-radius: 100%;
+	min-height: 34px;
+	min-width: 34px;
+	padding: 0px;
+}
+
+span.radioSpan {
+	white-space: nowrap;
+}
+
+span.sliderControls {
+	display: inline-flex;
+}
+
+.labelCheckBoxCheckall {
+	color: #4060a0;
+}
+
+.form-horizontal .control-label {
+	text-align: right;
+	padding-top: 7px;
+	margin-bottom: 0px;
+}
+
+.form-horizontal .form-group {
+	margin-bottom: 15px;
+}
+
+.form-horizontal .form-group:before,
+.form-horizontal .form-group:after {
+	display: table;
+	content: " ";
+}
+
+.form-horizontal .form-group:after {
+	clear: both
+}
+
+.col-sm-4 {
+	padding-left: 0px;
+	padding-right: 10px;
+	min-height: 1px;
+	width: 25%;
+	display: block;
+	float: left;
+}
+
+.col-sm-8 {
+	padding-left: 5px;
+	padding-right: 0px;
+	min-height: 1px;
+	width: 75%;
+	display: block;
+	float: left;
+	word-break: break-word;
+}
+
+input.helpButton {
+	margin-left: 20px;
+	border-radius: 100%;
+	font-weight: bold;
+	text-shadow: #cccccc 0px 0px 0px;
+	padding: 2px 6px;
+	background-image: linear-gradient(#4060a0 0px, #305090 100%);
+	border-color: #1a3c75;
+}
+
+#divHiddenPictureLoader {
+	display: none;
+}
+
+#divNotificationContainerWrapper {
+	height: 100%;
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    pointer-events: none;
+}
+
+#divNotificationContainer {
+    height: 100%;
+    width: 100%;
+    position: sticky;
+    top: 0px;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: flex-end;
+	overflow: hidden;
+    align-items: center;
+}
+
+.divNotification {
+    opacity: 0;
+    transition: opacity 2s;
+    background: #a088b0;
+    color: #000000;
+    font-family: Convergence, Helvetica, Arial, sans-serif;
+    border: 3px solid #6666cc;
+    border-radius: 16px;
+    padding: 2px 16px;
+    cursor: pointer;
+    pointer-events: all;
+    margin-bottom: 5px;
+	text-align: center;
+	width:  	fit-content;
+}
+
+.modalPopup {
+	background: #000000c0;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	height: 100%;
+	width: 100%;
+	z-index: 10;
+}
+
+.popup {
+	background: #a088b0;
+	color: #000000;
+	font-family: Convergence, Helvetica, Arial, sans-serif;
+	border: 3px solid #6666cc;
+	border-radius: 16px;
+	padding: 8px 16px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform:translateX(-50%) translateY(-50%);
+	min-width: 40%;
+}
+
+.popupOption {
+    border: 3px solid black;
+	padding: 2px 10px;
+    text-align: center;
+    background-image: linear-gradient(#805090 0px, #403050 100%);
+	cursor: pointer;
+}
+
+.popupOptionContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    align-content: center;
+    flex-wrap: wrap;
+	margin-top: 10px;
+}
+
+#divIntroContainer {
+	margin: 10px 0;
+	display: flex;
+}
+
+#divIntroInstructions {
+	font-family: Convergence, Helvetica, Arial, sans-serif;
+	border: 3px solid #6666cc;
+	background: #a088b0;
+	color: #000000;
+	padding: 6px 10px;
+	border-radius: 10px;
+	flex: 1;
+}
+
+#buttonDisplayImages {
+	margin-left: 20px;
+}
+
+#buttonShowRules {
+	margin-top: 7px;
+	padding: 3px 6px 3px 6px;
+	font-weight: 400;
+	font-size: 14px;
+}
+
+#buttonShowCredits {
+	margin-top: 7px;
+	padding: 3px 6px 3px 6px;
+	font-weight: 400;
+	font-size: 14px;
+}
+
+#divGenderButtons {
+	text-align: center;
+}
+
+.iconGender {
+	font-weight: 400;
+	text-shadow: #cccccc 0px 1px 0px;
+	padding: 3px;
+	width: 36px;
+	height: 36px;
+}
+
+#imgLogo {
+	width: 50px;
+}
+
+#divCumPercent,
+#divEdgeDuration {
+	padding-top: 7px;
+}
+
+#mainwrapper {
+	height: 100%;
+}
+
+#choose {
+	margin: 0 auto;
+	max-width: 1000px;
+}
+
+#imgCumPic {
+    max-width: 200px;
+	max-height: 100px;
+}
+
+#mainwrapper.gameModeNormal #choose,
+#mainwrapper.gameModeEndurance #choose,
+#mainwrapper.gameModeSlideshow #choose {
+	display: none;
+}
+
+#hiddenPictureLoader {
+	display: none;
+}
+
+#divMessageContainer {
+	display: flex;
+	padding: 10px 0px;
+}
+
+#mainwrapper.gameModeSlideshow #divMessageContainer {
+	display: none;
+}
+
+#divImageHead {
+	margin: auto;
+	padding-left: 50px;
+	padding-right: 10px;
+}
+
+#imageHead {
+	width: 150px;
+	height: 150px;
+	border-radius: 6px;
+	border: 1px solid #303060;
+}
+
+#message {
+	font-family: Convergence, Helvetica, Arial, sans-serif;
+	font-size: 36pt;
+	text-align: center;
+	border-radius: 10px;
+	flex: 1;
+	text-shadow: 0 0 5px black;
+}
+
+#divRightMessage {
+	margin: auto;
+	width: 110px;
+	height: 80px;
+	padding-left: 20px;
+	padding-right: 10px;
+}
+
+#imageContainer {
+    height: 100%;
+	width: 100%;
+	text-align: center;
+	position: relative;
+	overflow: hidden;
+	margin: 0;
+}
+
+#imageDisplayed,
+#imageDisplayed2,
+#imgDisplayedCum {
+	display: block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	height: 100%;
+	width: 100%;
+	object-fit: contain;
+	transform: translate(-50%, -50%);
+}
+
+.row.header {
+  flex: 0 1 auto;
+}
+
+.row.content {
+  flex: 1 1 auto;
+}
+
+#progress {
+	margin: 10px auto 10px auto;
+	width: 75%;
+	max-width: 1000px;
+	height: 25px;
+	border-radius: 20px;
+	background-color: #222222;
+	overflow: hidden;
+	box-shadow: 0 0 1px 2px #6666cc;
+}
+
+#progress .jerkbar, 
+#progress .cumbar {
+	height: 100%;
+	float: left;
+	width: 100%;
+	position: relative;
+}
+
+#progress .text,
+#progress .text {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	text-align: center;
+	color: #000000;
+	line-height: 25px;
+	color: #ffffff;
+	display: block;
+}
+
+#progress .cumbar {
+	width: 25%;
+	font-size: 12pt;
+	display: none;
+}
+
+#progress .cumbar .separator
+{
+	height: 100%;
+	background: #6666cc;
+	width: 2px;
+	float: left;
+}
+
+#progress .bar {
+	height: 100%;
+	float: left;
+	background-color: #ffffff;
+	width: 0px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+#divGameControls {
+	display: none;
+	margin: 10px auto;
+	text-align: center;
+	flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+#divGameControls input {
+	margin-top: 0px;
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
+#buttonBlacklistPicture {
+	background-image: linear-gradient(#801000 0px, #400000 100%);
+}
+
+#buttonSlideshowBackToMenu {
+	display: block;
+	position: fixed;
+	right: 6px;
+	top: 6px;
+	margin: 0px;
+	padding: 0px 10px 6px 10px;
+	font-size: 24px;
+}
+
+#gamewrapper {
+	display: none;
+	flex-flow: column;
+	height: 100%;
+}
+
+#mainwrapper.gameModeNormal #gamewrapper,
+#mainwrapper.gameModeEndurance #gamewrapper,
+#mainwrapper.gameModeSlideshow #gamewrapper {
+	display: flex;
+}
+
+#divGameHeader {
+	z-index: 1;
+}
+
+#progress .bar {
+	background-color: #000000;
+}
+
+#mainwrapper.gameModeSlideshow #progress .text {
+	display: none;
+}
+
+#flash {
+	border-radius: 50%;
+	width: 80px;
+	height: 80px;
+	background: rgb(0, 0, 0);
+}
+
+#flashBg {
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+}
+
+#flashImg {
+	width: 80px;
+	height: 80px;
+}
+
+.circular-progress {
+	position: relative;
+	width: 20px;
+	height: 20px;
+}
+
+.circular-progress-circle {
+	position: relative;
+	width: 20px;
+	height: 20px;
+	background: transparent;
+	border-radius: 50%;
+	overflow: hidden;
+}
+
+.segment {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 100vw;
+	height: 100vw;
+	background: blue;
+	transform-origin: 0 0;
+}
+
+#imageBrowser {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	flex-wrap: wrap;
+	align-content: space-around;
+	padding: 10px;
+	user-select: none;
+}
+
+#divImageBrowserGridWrapper {
+	display: flex;
+	width: 100%;
+	height: 90%;
+	flex-wrap: wrap;
+	align-items: center;
+	align-content: flex-start;
+	justify-content: space-evenly;
+	padding: 10px;
+}
+
+.imageBrowserImage {
+	max-width: 15%;
+	max-height: 300px;
+	border: solid darkSlateGray 3px;
+	border-radius: 25px;
+	cursor: pointer;
+	user-select: none;
+	margin: 3px; 	
+}
+
+#bigImageViewer {
+	display: flex;
+	flex-flow: column;
+	height: 100%;
+	user-select: none;
+}
+
+#bigImageSrcHolder {
+	display: block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	height: 100%;
+	width: 100%;
+	object-fit: contain;
+	transform: translate(-50%, -50%);
+}
+
+#divBigImageViewerControls {
+	flex: 0 0 auto;
+	display: flex;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+	flex-direction: row;
+	margin-bottom: 15px;
+	background-color: #101010;
+}
+
+#divImageBrowserGridControls {
+	display: flex;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+	flex-direction: row;
+	width: 100%;
+	position: sticky;
+	top: 0px;
+	background-color: #101010;
+}
+
+#divBigImageSrcWrapper {
+	flex: 1 1 auto;
+	height: 100%;
+	width: 100%;
+	position: relative;
+}
+
+#createNewListWrapper {
+	display: flex;
+	align-content: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	width: 100%;
+	height: max-content;
+	flex-direction: row;
+	align-items: flex-end;
+}
+
+#listOfListsWrapper {
+	position: relative;
+	min-width: 300px;
+	min-height: 30px;
+	left: 0px;
+	margin-right: 10px;
+}
+
+#listOfListsSelector {
+	position: absolute;
+	min-width: 300px;
+	min-height: 31px;
+}
+
+#newListNameField {
+	position: absolute;
+	min-width: 290px;
+	margin: 5px;
+	min-height: 21px;
+}
+
+#buttonCreateNewList {
+	min-width: 132px;
+}
+
+#buttonExpandListSelectors {
+	border: black 1px solid;
+}
+
+#gameListSelectorWrapper {
+    border-radius: 4px;
+    border-width: 1px;
+    color: #cccccc;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+	display: flex;
+	min-width: 371px;
+}
+
+#buttonImageAddToListGame {
+	border: 1px solid black;
+}
+
+#buttonImageAddToListGame{
+	border: black solid 1px;
+}
+
+option {
+    background-color: white;
+    color: black;
+}
+
+#gameListOfListsWrapper {
+	min-width: 183px;
+    align-content: flex-start;
+    display: flex;
+}
+
+#browserListSelectorWrapper {
+	min-width: 371px;
+}

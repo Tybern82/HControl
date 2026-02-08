@@ -1,0 +1,44 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="clr-namespace:HControl.Game.Endurance"
+			 xmlns:nsenum="clr-namespace:EnumBindingWithDescription"
+			 mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="350"
+			 x:Class="HControl.EnduranceSettingsControl"
+			 x:DataType="vm:EnduranceGameParameters">
+	<Design.DataContext>
+		<vm:EnduranceGameParameters />
+	</Design.DataContext>
+	<UserControl.Resources>
+		<nsenum:EnumDescriptionConverter x:Key="enumConverter" />
+	</UserControl.Resources>
+	<StackPanel HorizontalAlignment="Center">
+		<ComboBox Name="cmbType" ItemsSource="{Binding AllGameModes}" SelectedItem="{Binding Type}" VerticalAlignment="Center"
+				  HorizontalAlignment="Stretch">
+			<ComboBox.ItemTemplate>
+				<DataTemplate>
+					<TextBlock Text="{Binding Converter={StaticResource enumConverter}}" />
+				</DataTemplate>
+			</ComboBox.ItemTemplate>
+		</ComboBox>
+		<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+			<Button Name="btnGentle" Content="Gentle" Classes="MainWindowButton" />
+			<Button Name="btnNormal" Content="Normal" Classes="MainWindowButton" />
+			<Button Name="btnEvil" Content="Evil" Classes="MainWindowButton" />
+		</StackPanel>
+		<Grid RowDefinitions="auto,auto,auto,auto" ColumnDefinitions="auto,auto">
+			<TextBlock Grid.Row="0" Grid.Column="0" Classes="MainWindowLabel" Text="Base Duration:" HorizontalAlignment="Right" />
+			<TimePicker Grid.Row="0" Grid.Column="1" ClockIdentifier="24HourClock" SelectedTime="{Binding BaseTime}" MinuteIncrement="5" HorizontalAlignment="Center" />
+
+			<TextBlock Grid.Row="1" Grid.Column="0" Classes="MainWindowLabel" Text="Round Duration:" HorizontalAlignment="Right" />
+			<TimePicker Grid.Row="1" Grid.Column="1" ClockIdentifier="24HourClock" SelectedTime="{Binding RoundTime}" MinuteIncrement="1" HorizontalAlignment="Center" Margin="5"/>
+			
+			<TextBlock Grid.Row="2" Grid.Column="0" Classes="MainWindowLabel" Text="Minimum Rounds: " HorizontalAlignment="Right" />
+			<NumericUpDown Grid.Row="2" Grid.Column="1" Increment="1" Minimum="0" Height="30" Value="{Binding MinRounds}" TextAlignment="Right" />
+			
+			<TextBlock Grid.Row="3" Grid.Column="0" Classes="MainWindowLabel" Text="Maximum Rounds: " HorizontalAlignment="Right" />
+			<NumericUpDown Grid.Row="3" Grid.Column="1" Increment="1" Minimum="0" Height="30" Value="{Binding MaxRounds}" TextAlignment="Right" />
+		</Grid>
+	</StackPanel>
+</UserControl>

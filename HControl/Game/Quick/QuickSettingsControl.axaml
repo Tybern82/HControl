@@ -1,0 +1,17 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:HControl.Game.Quick"
+             mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="60"
+             x:Class="HControl.QuickSettingsControl"
+             x:DataType="vm:QuickGameParameters">
+
+  <Design.DataContext>
+	  <vm:QuickGameParameters />
+  </Design.DataContext>
+  <Grid RowDefinitions="auto" ColumnDefinitions="auto,auto">
+	  <TextBlock Grid.Column="0" Grid.Row="0" Classes="MainWindowLabel">Round Count: </TextBlock>
+      <NumericUpDown Grid.Column="1" Grid.Row="0" Increment="1" Minimum="1" Height="30" Value="{Binding RoundCount}" />
+  </Grid>
+</UserControl>

@@ -1,0 +1,175 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="clr-namespace:HControl.ViewModels"
+			 xmlns:nsenum="clr-namespace:EnumBindingWithDescription"
+			 mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
+			 MinWidth="400" MinHeight="200"
+			 Background="Black"
+			 x:Class="HControl.Views.MainView"
+			 x:DataType="vm:MainViewModel">
+	<Design.DataContext>
+		<vm:MainViewModel />
+	</Design.DataContext>
+	<UserControl.Resources>
+		<nsenum:EnumDescriptionConverter x:Key="enumConverter" />
+	</UserControl.Resources>
+	<Grid ColumnDefinitions="*" RowDefinitions="*,auto">
+	<TabControl Name="tcMain" SelectedIndex="{Binding SelectedPage}" Grid.Row="0" Grid.Column="0"> <!-- {Binding SelectedPage} -->
+	<TabItem Header="Settings" Name="tSettings" IsVisible="False">
+		<StackPanel Orientation="Horizontal">
+			<Image Name="imgMain" />
+			<ScrollViewer>
+				<StackPanel HorizontalAlignment="Center">
+					<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+						<ToggleButton Name="btnMale" Content="Lucas" Classes="MainWindowButton" />
+						<ToggleButton Name="btnFemale" Content="Lucia" Classes="MainWindowButton" />
+					</StackPanel>
+					<TextBlock Classes="MainWindowTitle" Text="Selected Images" />
+					<DataGrid Margin="20" ItemsSource="{Binding CommonParameters.ImageList}"
+							  IsReadOnly="False"
+							  CanUserReorderColumns="True"
+							  CanUserResizeColumns="True"
+							  CanUserSortColumns="True"
+							  GridLinesVisibility="All"
+							  BorderThickness="1" BorderBrush="WhiteSmoke" Name="dataImages"
+							  HorizontalAlignment="Center">
+						<DataGrid.Columns>
+							<DataGridTemplateColumn Header="Enabled">
+								<DataGridTemplateColumn.CellTemplate>
+									<DataTemplate>
+										<CheckBox IsChecked="{Binding IsEnabled}" />
+									</DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
+							<DataGridTemplateColumn Header="Folder">
+								<DataGridTemplateColumn.CellTemplate>
+									<DataTemplate>
+										<TextBlock Text="{Binding Folder}" />
+									</DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
+							<DataGridTemplateColumn Header="Subfolders?">
+								<DataGridTemplateColumn.CellTemplate>
+									<DataTemplate>
+										<CheckBox IsChecked="{Binding AddSubfolders}" />
+									</DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
+						</DataGrid.Columns>
+					</DataGrid>
+					<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+						<Button Classes="MainWindowButton" Content="Add" Name="btnAddFolder" />
+						<Button Classes="MainWindowButton" Content="Remove" Name="btnRemoveFolder" />
+					</StackPanel>
+
+					<TextBlock Classes="MainWindowTitle" Text="Finish Images" />
+					<DataGrid Margin="20" ItemsSource="{Binding CommonParameters.FinishList}"
+							  IsReadOnly="False"
+							  CanUserReorderColumns="True"
+							  CanUserResizeColumns="True"
+							  CanUserSortColumns="True"
+							  GridLinesVisibility="All"
+							  BorderThickness="1" BorderBrush="WhiteSmoke" Name="dataFinish"
+							  HorizontalAlignment="Center">
+						<DataGrid.Columns>
+							<DataGridTemplateColumn Header="Enabled">
+								<DataGridTemplateColumn.CellTemplate>
+									<DataTemplate>
+										<CheckBox IsChecked="{Binding IsEnabled}" />
+									</DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
+							<DataGridTemplateColumn Header="Folder">
+								<DataGridTemplateColumn.CellTemplate>
+									<DataTemplate>
+										<TextBlock Text="{Binding Folder}" />
+									</DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
+							<DataGridTemplateColumn Header="Subfolders?">
+								<DataGridTemplateColumn.CellTemplate>
+									<DataTemplate>
+										<CheckBox IsChecked="{Binding AddSubfolders}" />
+									</DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
+						</DataGrid.Columns>
+					</DataGrid>
+					<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+						<Button Classes="MainWindowButton" Content="Add" Name="btnAddFFolder" />
+						<Button Classes="MainWindowButton" Content="Remove" Name="btnRemoveFFolder" />
+					</StackPanel>
+
+					<Grid RowDefinitions="auto,auto,auto,auto,auto" ColumnDefinitions="auto,auto,auto,auto">
+						<TextBlock Grid.Column="0" Grid.Row="0" Classes="MainWindowLabel">Intense: </TextBlock>
+						<CheckBox Grid.Column="1" Grid.Row="0" IsChecked="{Binding CommonParameters.IsIntense}" />
+						<TextBlock Grid.Column="2" Grid.Row="0" Classes="MainWindowLabel">Loop Finish: </TextBlock>
+						<CheckBox Grid.Column="3" Grid.Row="0" IsChecked="{Binding CommonParameters.LoopFinish}" />
+
+						<TextBlock Grid.Column="0" Grid.Row="1" Classes="MainWindowLabel">Enable Handy: </TextBlock>
+						<CheckBox Grid.Column="1" Grid.Row="1" IsChecked="{Binding CommonParameters.EnableHandy}" />
+						<TextBlock Grid.Column="2" Grid.Row="1" Classes="MainWindowLabel">Handy Connection Key: </TextBlock>
+						<TextBox Grid.Column="3" Grid.Row="1" Height="30" Text="{Binding CommonParameters.HandyKey}" />
+
+						<TextBlock Grid.Column="0" Grid.Row="2" Classes="MainWindowLabel">No Image Break: </TextBlock>
+						<CheckBox Grid.Column="1" Grid.Row="2" IsChecked="{Binding CommonParameters.NoImageBreak}" />
+						<TextBlock Grid.Column="2" Grid.Row="2" Classes="MainWindowLabel">Do Ticker: </TextBlock>
+						<CheckBox Grid.Column="3" Grid.Row="2" IsChecked="{Binding CommonParameters.DoTicker}" />
+
+						<TextBlock Grid.Column="0" Grid.Row="3" Classes="MainWindowLabel">No Beat Break: </TextBlock>
+						<CheckBox Grid.Column="1" Grid.Row="3" IsChecked="{Binding CommonParameters.NoBeatBreak}" />
+						<TextBlock Grid.Column="2" Grid.Row="3" Classes="MainWindowLabel">Min Beat: </TextBlock>
+						<NumericUpDown Grid.Column="3" Grid.Row="3" Height="30" Width="120" Value="{Binding CommonParameters.BeatDefault}" Minimum="0" Maximum="100" Increment="5" />
+
+						<TextBlock Grid.Column="0" Grid.Row="4" Classes="MainWindowLabel">Change Picture After: </TextBlock>
+						<TimePicker Grid.Column="1" Grid.Row="4" Height="30" SelectedTime="{Binding CommonParameters.PictureCycle}" UseSeconds="True" ClockIdentifier="24HourClock" />
+					</Grid>
+					<TabControl Name="tcSettings" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+					</TabControl>
+					<Button Name="startSelected" HorizontalAlignment="Center">Start</Button>
+				</StackPanel>
+			</ScrollViewer>
+		</StackPanel>
+	</TabItem>
+		<TabItem Header="Slideshow" Name="tSlideshow" IsVisible="False">
+			<Grid RowDefinitions="auto,*" ColumnDefinitions="*">
+				<Grid Grid.Row="0" Grid.Column="0" RowDefinitions="auto,auto,auto" ColumnDefinitions="150,*,150">
+					<Image Name="iconHead" Source="{Binding StateImage}" MaxWidth="100" MaxHeight="100" Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="25,25,25,25" />
+
+
+					<TextBlock Name="txtMessage" Grid.Row="0" Grid.Column="1" Classes="MainWindowTitle" Text="{Binding MessageContent}" />
+					<ProgressBar Name="prgTimer" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" Value="{Binding RoundProgress}" Minimum="0" Maximum="{Binding RoundDuration}" />
+					<TextBlock Name="txtTimer" Grid.Row="1" Grid.Column="1" Classes="MainWindowTitle" Text="{Binding TimerText}"/>
+					<ProgressBar Name="prgFinish" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" Value="{Binding CurrentProgress}" Minimum="0" Maximum="{Binding TotalDuration}" />
+					<TextBlock Name="txtFinish" Grid.Row="2" Grid.Column="1" Classes="MainWindowTitle" Text="{Binding FinishText}" />
+
+
+					<StackPanel Grid.Row="0" Grid.RowSpan="3" Grid.Column="3" Orientation="Vertical">
+						<Button HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5,5,5,5" Padding="5,5,5,5" Name="btnClose">
+							<Image Name="iconCancel" MaxWidth="20" MaxHeight="20" />
+						</Button>
+						<Canvas Name="iconTicker" HorizontalAlignment="Stretch" Width="80" Height="80" IsVisible="{Binding TickerVisible}">
+							<Ellipse Fill="Green" Width="80" Height="80" HorizontalAlignment="Center" Canvas.Top="25" />
+						</Canvas>
+					</StackPanel>
+				</Grid>
+				<Viewbox Grid.Row="1" Grid.Column="0" Stretch="Uniform" StretchDirection="Both">
+					<Border CornerRadius="10" Margin="5,5,5,5">
+						<Image Name="mainImage" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Source="{Binding CurrentImage}" IsVisible="{Binding ShowImage}" />
+					</Border>
+				</Viewbox>
+			</Grid>
+		</TabItem>
+	</TabControl>
+		<TextBlock Name="statusBar" Grid.Row="1" Grid.Column="0" 
+		   VerticalAlignment="Bottom" 
+		   HorizontalAlignment="Stretch" 
+		   TextAlignment="Right" 
+		   Margin="10" 
+		   Text="{Binding StatusText}" Opacity="{Binding StatusOpacity}"
+		   />
+		</Grid>
+</UserControl>

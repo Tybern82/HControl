@@ -1,0 +1,28 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="850"
+             x:Class="HControl.DeviceWidget">
+  <Grid RowDefinitions="50,100,*" ColumnDefinitions="*">
+	  <TextBlock Grid.Row="0" Grid.Column="0" Classes="MainWindowTitle">Device Control</TextBlock>
+	  <HeaderedContentControl Classes="GroupBox" Header="Status" Grid.Row="1" Grid.Column="0">
+		  <Grid RowDefinitions="*" ColumnDefinitions="*" Background="Black">
+			  <TextBlock Classes="MainWindowTitle" Grid.Row="0" Grid.Column="0" Name="lblIntensity" VerticalAlignment="Center" HorizontalAlignment="Center">Off</TextBlock>
+		  </Grid>
+	  </HeaderedContentControl>
+      <StackPanel Grid.Row="2" Grid.Column="0">
+		  <Button Classes="MainWindowButton" HorizontalAlignment="Stretch" Name="btn100"><TextBlock HorizontalAlignment="Center">100%</TextBlock></Button>
+		  <Button Classes="MainWindowButton" HorizontalAlignment="Stretch" Name="btn90" ><TextBlock HorizontalAlignment="Center"> 90%</TextBlock></Button>
+		  <Button Classes="MainWindowButton" HorizontalAlignment="Stretch" Name="btn80" ><TextBlock HorizontalAlignment="Center"> 80%</TextBlock></Button>
+		  <Button Classes="MainWindowButton" HorizontalAlignment="Stretch" Name="btn70" ><TextBlock HorizontalAlignment="Center"> 70%</TextBlock></Button>
+		  <Button Classes="MainWindowButton" HorizontalAlignment="Stretch" Name="btn60" ><TextBlock HorizontalAlignment="Center"> 60%</TextBlock></Button>
+		  <Button Classes="MainWindowButton" HorizontalAlignment="Stretch" Name="btn50" ><TextBlock HorizontalAlignment="Center"> 50%</TextBlock></Button>
+		  <Button Classes="MainWindowButton" HorizontalAlignment="Stretch" Name="btn40" ><TextBlock HorizontalAlignment="Center"> 40%</TextBlock></Button>
+		  <Button Classes="MainWindowButton" HorizontalAlignment="Stretch" Name="btn30" ><TextBlock HorizontalAlignment="Center"> 30%</TextBlock></Button>
+		  <Button Classes="MainWindowButton" HorizontalAlignment="Stretch" Name="btn20" ><TextBlock HorizontalAlignment="Center"> 20%</TextBlock></Button>
+		  <Button Classes="MainWindowButton" HorizontalAlignment="Stretch" Name="btn10" ><TextBlock HorizontalAlignment="Center"> 10%</TextBlock></Button>
+		  <Button Classes="MainWindowButton" HorizontalAlignment="Stretch" Name="btnStop"><TextBlock HorizontalAlignment="Center">Stop</TextBlock></Button>
+      </StackPanel>
+  </Grid>
+</UserControl>

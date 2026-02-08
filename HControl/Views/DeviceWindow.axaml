@@ -1,0 +1,11 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:controls="using:Microsoft.Maui.Controls"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:view="using:HControl"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="850" Width="400" Height="850"
+        x:Class="HControl.DeviceWindow"
+        Title="DeviceWindow">
+  <view:DeviceWidget Name="wdgDevice" />
+</Window>

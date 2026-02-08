@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+	<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' data: *; script-src 'self'; style-src 'self' 'unsafe-inline'; media-src 'self' 'unsafe-inline' data: *; img-src 'self' 'unsafe-inline' data: content: http: https:">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
+
+	<title>Heat Control - Edging game</title>
+	<meta name="description" content="Heat Control by Howling-Strawberries">
+
+	<link href="files/css/styles.css" rel="stylesheet">
+	<link href="files/css/styles_m.css" rel="stylesheet">
+
+	<script type="text/javascript" src="files/lib/buttplug.min.js"></script>
+
+	<script type="text/javascript" src="cordova.js"></script>
+
+	<script type="text/javascript" src="files/js/ButtplugConnection.js"></script>
+	<script type="text/javascript" src="files/js/CharDialog.js"></script>
+	<script type="text/javascript" src="files/js/FlashManager.js"></script>
+	<script type="text/javascript" src="files/js/GameModeEndurance.js"></script>
+	<script type="text/javascript" src="files/js/GameModeNormal.js"></script>
+	<script type="text/javascript" src="files/js/GameModeSlideshow.js"></script>
+	<script type="text/javascript" src="files/js/HoldableButton.js"></script>
+	<script type="text/javascript" src="files/js/ImageBrowser.js"></script>
+	<script type="text/javascript" src="files/js/ImageManager.js"></script>
+	<script type="text/javascript" src="files/js/ListManager.js"></script>
+	<script type="text/javascript" src="files/js/NotifMessage.js"></script>
+	<script type="text/javascript" src="files/js/Popup.js"></script>
+	<script type="text/javascript" src="files/js/ProgressBarManager.js"></script>
+	<script type="text/javascript" src="files/js/RangeControl.js"></script>
+	<script type="text/javascript" src="files/js/RNGHat.js"></script>
+	<script type="text/javascript" src="files/js/RNGList.js"></script>
+	<script type="text/javascript" src="files/js/State.js"></script>
+	<script type="text/javascript" src="files/js/SwipeDetection.js"></script>
+	<script type="text/javascript" src="files/js/TimeTracker.js"></script>
+	<script type="text/javascript" src="files/js/Visuals.js"></script>
+
+	<script type="text/javascript" src="files/js/main.js"></script>
+</head>
+<body>
+	<div id="divLoading">
+		<div>Loading, please wait...</div>
+		<div>This game requires JavaScript to run. Please make sure JavaScript is activated on this page.</div>
+	</div>
+
+	<div id="divHiddenPictureLoader">
+		<img id="imgEasterEggLucario" src=""/>
+	</div>
+
+	<div id="mainwrapper" style="display: none">
+		<div id="choose">
+			<h2><img id="imgLogo" src="files/img/logo.png"/> Heat Control</h2>
+			<div id="divVersion">(v?)</div>
+			<div id="divIntroContainer">
+				<div id="divIntroImage">
+					<img id="imgIntro"/>
+					<div id="divGenderButtons">
+						<input type="image" class="iconGender" id="buttonSetCharMale" src="files/img/iconMale.png"/>
+						<input type="image" class="iconGender" id="buttonSetCharFemale" src="files/img/iconFemale.png"/>
+					</div>
+				</div>
+				<div id="divIntroInstructions">
+					<p>Hi, welcome to Heat Control! I'm <span id="spanCharName">--CharName--</span>, and I hope we'll have lots of fun together!</p>
+					<p>Check out the rules here: <input type="button" id="buttonShowRules" value="Show"></p>
+					<ul id="rulesText">
+						<li>Instructions will tell you to fap and stop, until you are told you can cum. Or not!</li>
+						<li>When the CUM bar appears, be ready, you could be instructed to cum next!</li>
+						<li>Do not cum before you are instructed to do so.</li>
+						<li>If you get too close, slow down or stop until you are told to go again!</li>
+						<li>When you are told you can cum, if you do not cum by the time the cum bar reaches the end, you can't cum anymore.</li>
+						<li>Spice things up by using a toy, or playing with a partner!</li>
+					</ul>
+					<p>Click here to see shortcuts and swipe motions: <input type="button" id="buttonShowShortcuts" value="Show shortcuts"></p>
+					Join the Heat Control community's <a href="https://discord.gg/pwxcEJwqWc" target="_blank">Discord Server!</a><br/>
+					<input type="button" id="buttonShowCredits" value="Credits"></p>
+					<p id="creditsSection">
+					Inspired by <a href="https://www.edgemeplease.com/" target="_blank">www.edgemeplease.com</a>, taking the main idea and improving upon it!<br/>
+					A big thank you to beta testers who suggested improvements!<br/>
+					Huge thanks to <a href="https://nevernewer905.itch.io/" target="_blank">nevernewer905</a> for contributing to the code!
+					</p>
+				</div>
+			</div>
+			
+			<div class="form-horizontal">
+				<div id="basicOptionsWrapper">
+					<div class="form-group">
+						<label class="col-sm-4 control-label">Game mode</label>
+						<div class="col-sm-8">
+							<span class="radioSpan">
+								<input id="rbGameModeNormal" type="radio" name="rbGameMode"/>
+								<label for="rbGameModeNormal">Edge</label>
+							</span>
+							<span class="radioSpan">
+								<input id="rbGameModeEndurance" type="radio" name="rbGameMode"/>
+								<label for="rbGameModeEndurance">Endurance</label>
+							</span>
+							<span class="radioSpan">
+								<input id="rbGameModeSlideshow" type="radio" name="rbGameMode"/>
+								<label for="rbGameModeSlideshow">Slideshow</label>
+							</span>
+							<input type="button" id="buttonGameModeHelp" class="helpButton" value="?"/>
+						</div>
+					</div>
+				
+					<div class="form-group gameModeNormal">
+						<label class="col-sm-4 control-label">Duration</label>
+						<div class="col-sm-8">
+							<div id="divEdgeDuration"></div>
+							<span class="sliderControls">
+								<input type="button" id="buttonEdgeDurationMinus" class="buttonIncrement" value="-"/>
+								<input type="range" id="rangeEdgeDuration" name="rangeEdgeDuration" min="5" max="240" step="5" value="30">
+								<input type="button" id="buttonEdgeDurationPlus" class="buttonIncrement" value="+"/>
+							</span>
+							<input type="button" id="buttonDurationHelp" class="helpButton" value="?"/>
+						</div>
+					</div>
+					
+					<div class="form-group gameModeEndurance">
+						<label class="col-sm-4 control-label">Mood</label>
+						<div class="col-sm-8">
+							<select id="selectMood">
+								<option value="gentle">Gentle (up to 1h)</option>
+								<option value="average" selected="selected">Average (up to 2h)</option>
+								<option value="evil">Evil (up to 4h)</option>
+							</select>
+							<input type="button" id="buttonMoodHelp" class="helpButton" value="?"/>
+						</div>
+					</div>
+					
+					<div class="form-group gameModeNormal">
+						<label class="col-sm-4 control-label">Chance to cum</label>
+						<div class="col-sm-8">
+							<div id="divCumPercent">50%</div>
+							<span class="sliderControls">
+								<input type="button" id="buttonCumPercentMinus" class="buttonIncrement" value="-"/>
+								<input type="range" name="cumPercent" id="cumPercent" min="0" max="100" step="1" value="50">
+								<input type="button" id="buttonCumPercentPlus" class="buttonIncrement" value="+"/>
+							</span>
+							<input type="button" id="buttonCumHelp" class="helpButton" value="?"/>
+						</div>
+					</div>
+
+					<div class="form-group gameModeSlideshow">
+						<label class="col-sm-4 control-label">Slideshow pictures speed</label>
+						<div class="col-sm-8">
+							<input id="nbSlideshowMinSpeed" type="number" value="20" min="5" max="999"/>
+							to <input id="nbSlideshowMaxSpeed" type="number" value="40" min="5" max="999"/> seconds
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-sm-4 control-label">Pictures to use</label>
+						<div class="col-sm-8">
+							<span class="radioSpan">
+								<input id="rbPicUseLocal" type="radio" name="rbPicUse"/>
+								<label id="labelRbPicUseLocal" for="rbPicUseLocal">Local</label>
+							</span>
+							<span class="radioSpan">
+								<input id="rbPicUseFavorites" type="radio" name="rbPicUse"/>
+								<label for="rbPicUseFavorites">E621 favorites</label>
+							</span>
+							<span class="radioSpan">
+								<input id="rbPicUseSearch" type="radio" name="rbPicUse"/>
+								<label for="rbPicUseSearch">E621 search</label>
+							</span>
+							<span class="radioSpan">
+								<input id="rbPicUseList" type="radio" name="rbPicUse"/>
+								<label for="rbPicUseList">Custom List</label>
+							</span>
+						</div>
+					</div>
+					
+					<div class="form-group picUseFavorites">
+						<label class="col-sm-4 control-label">Username</label>
+						<div class="col-sm-8">
+							<input id="textfieldUsername" type="text" name="textfieldUsername"/>
+						</div>
+					</div>
+					
+					<div class="form-group picUseSearch">
+						<label class="col-sm-4 control-label">Search query</label>
+						<div class="col-sm-8">
+							<input id="textfieldSearchQuery" type="text" name="textfieldSearchQuery"/>
+						</div>
+					</div>
+					
+					<div class="form-group picUseSearch">
+						<label class="col-sm-4 control-label">Tags blacklist</label>
+						<div class="col-sm-8">
+							<input id="textfieldTagsBlacklist" type="text" name="textfieldTagsBlacklist"/>
+						</div>
+					</div>
+					
+					<div class="form-group picUseSearch">
+						<label class="col-sm-4 control-label">Score threshold</label>
+						<div class="col-sm-8">
+							<input id="nbSearchScore" type="number" value="20" min="0" max="999"/>
+							<input type="button" id="buttonScoreThresholdHelp" class="helpButton" value="?"/>
+						</div>
+					</div>
+					
+					<div class="form-group picUseSearch">
+						<label class="col-sm-4 control-label">Order</label>
+						<div class="col-sm-8">
+							<input id="rbSearchOrderRandom" type="radio" name="rbSearchOrder" checked/>
+							<label for="rbSearchOrderRandom">Random</label>
+							<input id="rbSearchOrderPopular" type="radio" name="rbSearchOrder"/>
+							<label for="rbSearchOrderPopular">Popular</label>
+							<input id="rbSearchOrderRecent" type="radio" name="rbSearchOrder"/>
+							<label for="rbSearchOrderRecent">Recent</label>
+							<input type="button" id="buttonSearchOrderHelp" class="helpButton" value="?"/>
+						</div>
+					</div>
+					
+					<div class="form-group picUseFavorites picUseSearch">
+						<label class="col-sm-4 control-label">Number of pictures</label>
+						<div class="col-sm-8">
+							<input id="nbMaxPicNum" type="number" name="nbMaxPicNum" value="100" min="0" max="6400"/> (Max 6400)
+							<input type="button" id="buttonMaxPicNumHelp" class="helpButton" value="?"/>
+						</div>
+					</div>
+					
+					<div class="form-group picUseFavorites">
+						<label class="col-sm-4"></label>
+						<div class="col-sm-8">
+							<input id="buttonLoadFavorites" type="button" value="Load favorites"/>
+						</div>
+					</div>
+					
+					<div class="form-group picUseSearch">
+						<label class="col-sm-4"></label>
+						<div class="col-sm-8">
+							<input id="buttonLoadSearch" type="button" value="Load search"/>
+						</div>
+					</div>
+
+					<div class="form-group picUseList">
+						<label class="col-sm-4 control-label">Select list</label>
+						<div class="col-sm-8">
+							<select name="picUseListSelector" id="picUseListSelector">
+							</select>
+							<input id="buttonLoadList" type="button" value="Add list"/>
+							<label id="labelInputList">Total Unique Pics: 0</label>
+						</div>
+						<div id="divSelectedLists"></div>
+					</div>
+					
+					<div class="form-group picUseFavorites picUseSearch">
+						<label class="col-sm-4"></label>
+						<div class="col-sm-8">
+							<span id="spanImageCount">Pictures found: 0</span>
+							<input type="button" id="buttonDisplayImages" class="disabled" value="Display results" disabled/>
+						</div>
+					</div>
+					
+					<div class="form-group picUseLocal">
+						<label class="col-sm-4 control-label">Select content:</label>
+						<div class="col-sm-8">
+							<input id="inputFiles" type="button" value="Select folder..."/><label id="labelInputFiles">Pics: 0</label>
+							<input id="buttonOwnPicHelp" type="button" class="helpButton" value="?"/>
+						</div>
+						<label class="col-sm-4 control-label"></label>
+						<div id="subfolderSelection" class="col-sm-8">
+							<input id="cbIncludeSubfolders" type="checkbox" name="cbIncludeSubfolders"/>
+							<label for="cbIncludeSubfolders">Include subfolders</label>
+						</div>
+						<div id="divSelectedFolders"></div>
+					</div>
+					
+					<div class="form-group gameModeNormal gameModeEndurance">
+						<label class="col-sm-4 control-label">Cum picture</label>
+						<div class="col-sm-8">
+							<input id="textfieldCumPic" type="text" name="textfieldCumPic" placeholder="Enter image URL"/>
+							<input id="buttonLoadCumPic" type="button" value="Load"/>
+							<input type="button" id="buttonCumPicHelp" class="helpButton" value="?"/>
+						</div>
+					</div>
+					
+					<div class="form-group gameModeNormal gameModeEndurance">
+						<label class="col-sm-4 control-label"></label>
+						<div class="col-sm-8">
+							<img id="imgCumPic" loadSuccess=""/>
+							<input id="buttonCancelCumPic" type="button" value="Cancel"/>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-4"></div>
+						<div class="col-sm-8">
+							<input type="button" id="buttonEditLists" value="Edit Image Lists">
+						</div>
+					</div>
+
+					<div class="form-group" style="display:none">
+						<div class="col-sm-4"></div>
+						<div class="col-sm-8">
+							<input type="button" id="buttonEditTrainer" value="Customize Trainer">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-4"></div>
+						<div class="col-sm-8">
+							<input type="button" id="buttonShowAdvancedOptions" value="Advanced Options">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-4"></div>
+						<div class="col-sm-8">
+							<input type="button" id="buttonStartGame" value="START"/>
+						</div>
+					</div>
+				</div>
+
+				<div id="advancedOptionsWrapper">
+					<div class="form-horizontal">
+						<div class="form-group">
+							<label class="col-sm-4 control-label">Stroke speed indicator</label>
+							<div class="col-sm-8">
+								<select name="strokeControl" id="optionStrokeControl">
+									<option value="1" selected="selected">Circle</option>
+									<option value="2">Background</option>
+									<option value="" >No</option>
+								</select>
+								<br/>
+								<input id="cbStrokeControlTick" type="checkbox" name="cbStrokeControlTick"/>
+								<label for="cbStrokeControlTick">Add tick sound (toggleable in game with "m")</label>
+								<input type="button" id="buttonStrokeControlHelp" class="helpButton" value="?"/>
+								<br/>
+								<input id="cbCumNoTick" type="checkbox" name="cbCumNoTick"/>
+								<label for="cbCumNoTick">Disable stroke speed indicator on "Cum!!!" phases</label>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-4 control-label">Stop steps</label>
+							<div class="col-sm-8">
+								<input id="cbStopSteps" type="checkbox" name="cbStopSteps" checked/>
+								<label for="cbStopSteps">Click to enable</label>
+								<input type="button" id="buttonStopStepsHelp" class="helpButton" value="?"/>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-4 control-label">Timer</label>
+							<div class="col-sm-8">
+								<input id="cbShowTimerMessages" type="checkbox" name="cbShowTimerMessages" checked/>
+								<label for="cbShowTimerMessages">Show messages with time spent</label>
+								<input type="button" id="buttonShowTimerMessagesHelp" class="helpButton" value="?"/>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-4 control-label">Sexy "don't fap" steps</label>
+							<div class="col-sm-8">
+								<input id="sexyNoFap" type="checkbox" name="sexyNoFap"/>
+								<label for="sexyNoFap"><i>The pictures don't stop... ever...</i></label>
+								<input type="button" id="sexyNoFapHelp" class="helpButton" value="?"/>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-4 control-label">Pictures change within steps</label>
+							<div class="col-sm-8">
+								<input id="permaSlideshow" type="checkbox" name="permaSlideshow"/>
+								<label for="permaSlideshow">Click to enable</label>
+								<input type="button" id="permaSlideshowHelp" class="helpButton" value="?"/>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-4 control-label">Picture change speed</label>
+							<div class="col-sm-8">
+								<div>
+									<label>Go steps: </label>
+									<input id="nbPictureChangeSpeed" type="number" value="10" min="1" max="30"/>
+									<input type="button" id="buttonPictureChangeSpeedHelp" class="helpButton" value="?"/>
+								</div>
+								<div>
+									<label>Cum step: </label>
+									<input id="nbPictureChangeSpeedCum" type="number" value="10" min="1" max="30"/>
+								</div>
+							</div>
+						</div>
+
+						<!-- Steps speed change -->
+						<div class="form-group">
+							<label class="col-sm-4 control-label">Steps speed</label>
+							<div class="col-sm-8">
+								<div>
+									<label>Go steps: </label>
+									<span id="spanStepSpeedGo">x1</span>
+									<input type="button" id="buttonStepSpeedHelp" class="helpButton" value="?"/>
+								</div>
+								<div>
+									<span class="sliderControls">
+										<input type="button" id="buttonStepSpeedGoMinus" class="buttonIncrement" value="-"/>
+										<input type="range" id="rangeStepSpeedGo" name="rangeStepSpeedGo" min="0.25" max="3" step="0.25" value="1">
+										<input type="button" id="buttonStepSpeedGoPlus" class="buttonIncrement" value="+"/>
+									</span>
+								</div>
+								<div>
+									<label>Stop steps: </label>
+									<span id="spanStepSpeedStop">x1</span>
+								</div>
+								<div>
+									<span class="sliderControls">
+										<input type="button" id="buttonStepSpeedStopMinus" class="buttonIncrement" value="-"/>
+										<input type="range" id="rangeStepSpeedStop" name="rangeStepSpeedStop" min="0.25" max="3" step="0.25" value="1">
+										<input type="button" id="buttonStepSpeedStopPlus" class="buttonIncrement" value="+"/>
+									</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-4 control-label">Size of pictures</label>
+							<div class="col-sm-8">
+								<input id="cbFastQuality" type="checkbox" name="cbFastQuality"/>
+								<label for="cbFastQuality">Lower image quality</label>
+								<input type="button" id="buttonPicSizeHelp" class="helpButton" value="?"/>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-4 control-label">Background color changer</label>
+							<div class="col-sm-8">
+								<input type="color" id="backgroundColorGo" name="backgroundColorGo" value="#001100">
+								<label for="backgroundColor">Background Color Go</label>
+								<input type="color" id="backgroundColorStop" name="backgroundColorStop" value="#330000">
+								<label for="backgroundColor">Background Color Stop</label>
+							</div>
+						</div>
+
+						<!-- Buttplug config UI -->
+						<div class="form-group">
+							<label class="col-sm-4 control-label">Buttplug.io Intiface</label>
+							<div class="col-sm-8">
+								<div>
+									<label>Server URL</label>
+								</div>
+								<div>
+									<input type="textfield" id="textServerUrl" value="ws://localhost:12345"/>
+									<input type="button" id="buttonButtplugConnectHelp" class="helpButton" value="?"/>
+								</div>
+								<div>
+									<input type="button" id="buttonButtplugConnect" value="Connect">
+									<input type="button" id="buttonButtplugDisconnect" value="Disconnect">
+									<span id="spanButtplugConnectionStatus">Disconnected</span>
+								</div>
+								<br/>
+								<div>
+									<label>Power calibration: </label>
+									<input type="button" id="buttonButtplugVibratePowerHelp" class="helpButton" value="?"/>
+								</div>
+								<div>
+									<div>
+										<label> [Vibration] </label><span id="spanVibratePower">100%</span>
+									</div>
+									<span class="sliderControls">
+										<input type="button" id="buttonVibratePowerMinus" class="buttonIncrement" value="-"/>
+										<input type="range" id="rangeVibratePower" name="rangeVibratePower" min="0" max="100" step="1" value="100">
+										<input type="button" id="buttonVibratePowerPlus" class="buttonIncrement" value="+"/>
+									</span>
+									<input type="button" id="buttonButtplugVibrate" value="Test vibration">
+								</div>
+								<div>
+									<div>
+										<label> [Oscillation] </label><span id="spanOscillatePower">100%</span>
+									</div>
+									<span class="sliderControls">
+										<input type="button" id="buttonOscillatePowerMinus" class="buttonIncrement" value="-"/>
+										<input type="range" id="rangeOscillatePower" name="rangeOscillatePower" min="0" max="100" step="1" value="100">
+										<input type="button" id="buttonOscillatePowerPlus" class="buttonIncrement" value="+"/>
+									</span>
+									<input type="button" id="buttonButtplugOscillate" value="Test oscillation">
+								</div>
+								<div>
+									<div>
+										<label> [Rotation] </label><span id="spanRotatePower">100%</span>
+									</div>
+									<span class="sliderControls">
+										<input type="button" id="buttonRotatePowerMinus" class="buttonIncrement" value="-"/>
+										<input type="range" id="rangeRotatePower" name="rangeRotatePower" min="0" max="100" step="1" value="100">
+										<input type="button" id="buttonRotatePowerPlus" class="buttonIncrement" value="+"/>
+									</span>
+									<input type="button" id="buttonButtplugRotate" value="Test rotation">
+								</div>
+								<div>
+									<div>
+										<label> [Min Movement Speed] </label><span id="spanMoveSpeedMin">1BPS</span>
+									</div>
+									<div>
+										<label> [Max Movement Speed] </label><span id="spanMoveSpeedMax">5BPS</span>
+									</div>
+									<span class="sliderControls">
+										<input type="button" id="buttonMoveSpeedMinMinus" class="buttonIncrement" value="-"/>
+										<input type="range" id="rangeMoveSpeedMin" name="rangeMoveSpeedMin" min="0.5" max="6" step="0.25" value="1">
+										<input type="button" id="buttonMoveSpeedMinPlus" class="buttonIncrement" value="+"/>
+									</span>
+									<span class="sliderControls">
+										<input type="button" id="buttonMoveSpeedMaxMinus" class="buttonIncrement" value="-"/>
+										<input type="range" id="rangeMoveSpeedMax" name="rangeMoveSpeedMax" min="0.5" max="6" step="0.25" value="5">
+										<input type="button" id="buttonMoveSpeedMaxPlus" class="buttonIncrement" value="+"/>
+									</span>
+									<div>
+										<label> [Length range] </label><span id="spanMoveLength">100%</span>
+									</div>
+									<span class="sliderControls">
+										<input type="button" id="buttonMoveLengthMinus" class="buttonIncrement" value="-"/>
+										<input type="range" id="rangeMoveLength" name="rangeMoveLength" min="0" max="100" step="1" value="100">
+										<input type="button" id="buttonMoveLengthPlus" class="buttonIncrement" value="+"/>
+									</span>
+									<label> BPS:</label><input id="nbMovePowerTestBps" type="number" value="2.5" min="1" max="5" step="0.1"/>
+									<input type="button" id="buttonButtplugMove" value="Test movement">
+								</div>
+								<div>
+									<label> [Constriction] </label>
+									<input id="cbButtplugConstrict" type="checkbox" name="cbButtplugConstrict" checked/>
+									<label for="cbButtplugConstrict">Enabled</label>
+									<input type="button" id="buttonButtplugConstrict" value="Test constriction">
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-4 control-label">Cum step power</label>
+							<div class="col-sm-8">
+								<input id="cbFinishStepMaxVibe" type="checkbox" name="cbFinishStepMaxVibe"/>
+								<label for="cbFinishStepMaxVibe">Full power</label>
+								<input type="button" id="buttonHelpFinishStepMaxVibe" class="helpButton" value="?"/>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-sm-4"></div>
+							<div class="col-sm-8">
+								<input type="button" id="buttonExitAdvancedOptions" value="Exit">
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div id="listsWrapper">
+					<div class="form-horizontal">
+						
+						<div class="form-group">
+							<div class="col-sm-4"></div>
+							<div class="col-sm-8">
+								<input type="button" id="buttonEditBlacklist" value="Edit Blacklist">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-4"></div>
+							<div class="col-sm-8">
+								<div id="createNewListWrapper">
+									<div id="listOfListsWrapper">
+										<select name="listOfListsSelector" id="listOfListsSelector">
+										</select>
+										<input type="text" id="newListNameField" placeholder="Name your list"/>
+									</div>
+									<input type="button" id="buttonEditSelectedList" value="Edit Selected List">
+									<input type="button" id="buttonDeleteSelectedList" value="Delete Selected List">
+								</div>
+								<input type="button" id="buttonCreateNewList" value="Create New List">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-4 control-label">Share list: </label>
+							<div class="col-sm-8">
+								<select name="exportListOfListsSelector" id="exportListOfListsSelector">
+								</select>
+								<input type="button" id="buttonExportSelectedList" value="Export List">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-4 control-label">Import to: </label>
+								<div class="col-sm-8">
+									<select name="importListOfListsSelector" id="importListOfListsSelector">
+										<option value="New List">New list</option>
+									</select>
+									<input type="button" id="buttonImportNewList" value="Import List">
+									<input type="file" id="fileSelectorListImport" accept=".list">
+								</div>
+							
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-4"></div>
+							<div class="col-sm-8">
+								<input type="button" id="buttonExitListEditor" value="Exit">
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div id="trainerOptionsWrapper" style="display: none;">
+					<div class="form-horizontal">
+						<div class="form-group">
+							<label class="col-sm-4 control-label">Trainer Name: </label>
+							<div class="col-sm-8">
+								<input type="text" id="trainerNameInput" placeholder="Name">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-4 control-label">Trainer Image: </label>
+							<div class="col-sm-8">
+								<input type="text" id="trainerImageInput" placeholder="URL">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-4 control-label">Commands: </label>
+							<div class="col-sm-8">
+								<input type="text" id="trainerCommandInput" placeholder="Command">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-4"></div>
+							<div class="col-sm-8">
+								<input type="button" id="exitTrainerOptions" value="Exit">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="gamewrapper">
+			<div id="flashBg"></div>
+			<div id="divGameHeader" class="row header">
+				<input id="buttonSlideshowBackToMenu" type="button" value="x"/>
+				<div id="divMessageContainer">
+					<div id="divImageHead">
+						<img id="imageHead"/>
+					</div>
+					<div id="message"></div>
+					<div id="divRightMessage">
+						<div id="flash" class="off"></div>
+						<img id="flashImg" src="files/img/stop.png"/>
+					</div>
+				</div>
+				<div id="progress">
+					<div id="divJerkbar" class="jerkbar">
+						<div id="divJerkbarFill" class="bar"></div>
+						<div id="labelJerkbar" class="text">EDGE</div>
+					</div>
+					<div id="divCumbar" class="cumbar">
+						<div class="separator"></div>
+						<div id="divCumbarFill" class="bar"></div>
+						<div id="labelCumbar" class="text">CUM?</div>
+					</div>
+				</div>
+				<div id="divGameControls">
+					<div id = "nextImageCircle" class="circular-progress">
+						<div class="circular-progress-circle">
+							<div id="quadrant1" class="segment" style="transform: rotate(270deg) skew(0deg)"></div>
+							<div id="quadrant2" class="segment" style="transform: rotate(180deg) skew(0deg)"></div>
+							<div id="quadrant3" class="segment" style="transform: rotate(90deg) skew(0deg)"></div>
+							<div id="quadrant4" class="segment" style="transform: rotate(0deg) skew(0deg)"></div>
+						</div>
+					</div>
+					<div style="width: fit-content;display: flex;">
+						<input id="buttonSlideshowPause" type="button" value="| |"/>
+						<input id="buttonSlideshowPrev" type="button" value="<-"/>
+						<input id="buttonSlideshowNext" type="button" value="->"/>
+						<input id="buttonSlideshowView" type="button" value="View in E621"/>
+						<input id="buttonBlacklistPicture" class="picUseSearch" type="button" value="Blacklist [x]"/>
+					</div>
+					<div id="gameListSelectorWrapper">
+						<input id="buttonImageAddToListGameText" type="button" value="Bookmark [b]"/>
+					</div>
+				
+				</div>
+			</div>
+			<div class="row content">
+				<div id="imageContainer">
+					 <img id="imageDisplayed"/>
+					 <img id="imageDisplayed2"/>
+					 <img id="imgDisplayedCum"/>
+				</div>
+			</div>
+		</div>
+		
+		<div id="imageBrowser">
+			<div id="divImageBrowserGridControls">
+				<div style="width: fit-content">
+					<input id="buttonGridPrevPage" type="button" value="<-"/>
+					<input id="buttonGridNextPage" type="button" value="->"/>
+				</div>
+				<div id="divImageBrowserPageNumber">Page: 0</div>
+				<input id="buttonExitGrid" type="button" value="Exit"/>
+			</div>
+
+			<div id="divImageBrowserGridWrapper">
+
+			</div>
+		</div>
+
+		<div id="bigImageViewer">
+			<div id="divBigImageViewerControls">
+				<div style="width: fit-content">
+					<input id="buttonBigImagePrev" class="spacedButtons" type="button" value="<-"/>
+					<input id="buttonBigImageNext" class="spacedButtons" type="button" value="->"/>
+					<input id="buttonImageViewerViewE6" class="spacedButtons" type="button" value="View in E621"/>
+				</div>
+
+				<div id="bigImageViewerMiddleControlWrapper" style="width: fit-content;min-width: 288.09px; display: flex; flex-wrap: wrap; justify-content: center;">
+					<div id="browserListSelectorWrapper" style="display: flex; margin-top: 7px;">
+						<input id="buttonImageAddToListBrowserText"  class="spacedButtons" type="button" value="Add to list" style="margin: 0px;"/>
+						<div id="browserExtensionWrapper" style="display: flex;"	>
+							<div id="browserListOfListsWrapper" style="display: flex; min-width: 183px; align-content: flex-start; align-items: center; justify-content: center;">
+								<select name="browserListOfListsSelector" id="browserListOfListsSelector" style="position: absolute; min-width: 185px; min-height: 31px;">
+								</select>
+								<input type="text" id="browserNewListNameField" placeholder="Name your list" style="margin-top: 0px;position: absolute; display: none;"/>
+							</div>
+							<input id="browserButtonImageAddToListNew"  class="spacedButtons" type="button" value="New" style="margin: 0px;"/>
+						</div>
+						<input id="browserButtonExpandListSelectors"  class="spacedButtons" type="button" value="<" style="margin: 0px;"/>
+					</div>
+					<input id="buttonBigImageRemoveList" class="spacedButtons" type="button" value="Remove From List"/>
+					<input id="buttonBigImageBlacklist" class="spacedButtons" type="button" value="Blacklist"/>
+				</div>
+
+				<input id="buttonBigImageExit"  class="spacedButtons" type="button" value="Back"/>
+			</div>
+			<div id="divBigImageSrcWrapper">
+				<img alt="image" id="bigImageSrcHolder"/>
+			</div>
+		</div>
+	</div>
+
+	<div id="divNotificationContainerWrapper">
+		<div id="divNotificationContainer"></div>
+	</div>
+	<div id="divPopupContainer"></div>
+</body>
+</html>

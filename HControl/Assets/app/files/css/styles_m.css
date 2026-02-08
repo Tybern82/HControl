@@ -1,0 +1,103 @@
+@media only screen and (max-width: 1025px)
+{
+
+body {
+	font-size: 11px;
+}
+
+input[type=button] {
+	padding: 5px 10px 5px 10px;
+}
+
+input[type=button].spacedButtons {
+	margin: 15px;
+	padding: 15px 20px;
+}
+
+input[type="range"] {
+	width: 170px;
+}
+
+input.helpButton {
+	margin-left: 5px;
+	padding: 2px 6px;
+}
+
+.iconGender {
+	border-radius: 4px;
+	border-width: 1px;
+	font-weight: 400;
+	padding: 3px;
+	width: 24px;
+	height: 24px;
+}
+
+.popupOption {
+    border: 2px solid black;
+	padding: 2px 6px;
+}
+
+.circular-progress {
+	margin-top: 12px;
+}
+
+.imageBrowserImage {
+	border: solid darkSlateGray 2px;
+	border-radius: 10px;
+}
+
+#divIntroInstructions {
+	font-size: 14px;
+}
+
+#divIntroImage {
+	width: 25%;
+}
+
+#imgIntro {
+	width: 100%;
+}
+
+#message {
+	font-size: 16px;
+}
+
+#divImageHead {
+	padding-left: 20px;
+	padding-right: 10px;
+}
+
+#imageHead {
+	width: 80px;
+	height: 80px;
+	border-radius: 4px;
+	border: 1px solid #303060;
+}
+
+#divRightMessage {
+	width: 65px;
+	height: 50px;
+	padding-left: 10px;
+	padding-right: 100px;
+}
+
+#flash {
+	width: 50px;
+	height: 50px;
+}
+
+#flashImg {
+	width: 50px;
+	height: 50px;
+}
+
+#divGameControls {
+	min-height: 72px;
+    align-content: space-between;
+}
+
+#divBigImageViewerControls {
+	margin-bottom: 0px;
+}
+
+}

@@ -1,0 +1,77 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Design.PreviewWith>
+    <Border Padding="20">
+      <!-- Add Controls for Previewer Here -->
+      <StackPanel>
+        <Button Classes="MainWindowButton" Content="Sample Button" />
+        <TextBlock Classes="MainWindowLabel">Sample Label</TextBlock>
+        <TextBlock Classes="MainWindowDisplay">Sample Display</TextBlock>
+        <TextBox Classes="MainWindowEntry" Watermark="Sample Entry" />
+        <TextBlock Classes="MainWindowTitle">Sample Title</TextBlock>
+        <TimePicker Classes="MainWindowTimePicker" />
+        <CalendarDatePicker Classes="MainWindowCalenderDatePicker" />
+      </StackPanel>
+    </Border>
+  </Design.PreviewWith>
+
+  <!-- Add Styles Here -->
+  <Style Selector="Button.MainWindowButton">
+    <!-- HorizontalAlignment="Center" -->
+    <Setter Property="HorizontalAlignment" Value="Center" />
+
+    <!-- FontSize="16" -->
+    <Setter Property="FontSize" Value="16" />
+
+    <!-- Margin="10" -->
+    <Setter Property="Margin" Value="10" />
+
+    <!-- Padding="10" -->
+    <Setter Property="Padding" Value="10" />
+  </Style>
+
+  <Style Selector="TextBlock.MainWindowLabel">
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="Margin" Value="10" />
+    <Setter Property="Padding" Value="10" />
+    <Setter Property="TextAlignment" Value="Right" />
+  </Style>
+
+  <Style Selector="TextBlock.MainWindowDisplay">
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="Margin" Value="10" />
+    <Setter Property="Padding" Value="10" />
+    <Setter Property="TextAlignment" Value="Center" />
+    <Setter Property="Background" Value="AliceBlue" />
+  </Style>
+
+  <Style Selector="TextBox.MainWindowEntry">
+    <Setter Property="Margin" Value="10" />
+    <Setter Property="Padding" Value="5" />
+    <Setter Property="Width" Value="250" />
+  </Style>
+
+  <Style Selector="TextBlock.MainWindowTitle">
+    <!-- Margin="10" FontSize="24" FontFamily="Lato" TextAlignment="Center" -->
+    <Setter Property="Margin" Value="5" />
+    <Setter Property="Padding" Value="5" />
+    <Setter Property="FontSize" Value="24" />
+    <Setter Property="FontFamily" Value="Lato" />
+    <Setter Property="TextAlignment" Value="Center" />
+  </Style>
+
+  <Style Selector="CalendarDatePicker.MainWindowCalenderDatePicker">
+    <Setter Property="Margin" Value="10" />
+    <Setter Property="Padding" Value="5" />
+    <Setter Property="FontSize" Value="18" />
+    <Setter Property="FontFamily" Value="Lato" />
+  </Style>
+
+  <Style Selector="TimePicker.MainWindowTimeSpan">
+    <!-- ClockIdentifier="24HourClock" MinuteIncrement="5" Margin="10" Padding="5"  -->
+    <Setter Property="ClockIdentifier" Value="24HourClock" />
+    <Setter Property="MinuteIncrement" Value="5" />
+    <Setter Property="Margin" Value="10" />
+    <Setter Property="Padding" Value="5" />
+  </Style>
+</Styles>

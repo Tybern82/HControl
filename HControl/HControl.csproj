@@ -1,0 +1,167 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Include="Assets\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Remove="Assets\img\head_cum_Lucas.png" />
+    <AvaloniaResource Remove="Assets\img\head_cum_Lucia.png" />
+    <AvaloniaResource Remove="Assets\img\head_deny_Lucas.png" />
+    <AvaloniaResource Remove="Assets\img\head_deny_Lucia.png" />
+    <AvaloniaResource Remove="Assets\img\head_fap2_Lucas.png" />
+    <AvaloniaResource Remove="Assets\img\head_fap2_Lucia.png" />
+    <AvaloniaResource Remove="Assets\img\head_fap_Lucas.png" />
+    <AvaloniaResource Remove="Assets\img\head_fap_Lucia.png" />
+    <AvaloniaResource Remove="Assets\img\head_pause_Lucas.png" />
+    <AvaloniaResource Remove="Assets\img\head_pause_Lucia.png" />
+    <AvaloniaResource Remove="Assets\img\icon.png" />
+    <AvaloniaResource Remove="Assets\img\iconBackButton.png" />
+    <AvaloniaResource Remove="Assets\img\iconBurgerMenu.png" />
+    <AvaloniaResource Remove="Assets\img\iconCancel.png" />
+    <AvaloniaResource Remove="Assets\img\iconFemale.png" />
+    <AvaloniaResource Remove="Assets\img\iconFolder.png" />
+    <AvaloniaResource Remove="Assets\img\iconFolderSub.png" />
+    <AvaloniaResource Remove="Assets\img\iconMale.png" />
+    <AvaloniaResource Remove="Assets\img\iconNotFound.png" />
+    <AvaloniaResource Remove="Assets\img\intro_Lucas.png" />
+    <AvaloniaResource Remove="Assets\img\intro_Lucia.png" />
+    <AvaloniaResource Remove="Assets\img\logo.ico" />
+    <AvaloniaResource Remove="Assets\img\logo.png" />
+    <AvaloniaResource Remove="Assets\img\logo2.png" />
+    <AvaloniaResource Remove="Assets\img\stop.png" />
+    <AvaloniaResource Remove="Assets\img\tick_mark.png" />
+    <AvaloniaResource Remove="Assets\img\title.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Raw\Tick.wav" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <MauiAsset Include="Resources\Raw\Tick.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </MauiAsset>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="11.3.11" />
+    <PackageReference Include="Avalonia.Controls.DataGrid" Version="11.3.11" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.11" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="11.3.11" />
+    <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.3.11" />
+    <PackageReference Include="NAudio" Version="2.2.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    <PackageReference Include="NLog" Version="6.0.7" />
+    <PackageReference Include="ReactiveUI.Avalonia" Version="11.3.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Audio\chime-sound-7143.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Audio\Tick.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="nlog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\DeviceWidget.axaml.cs">
+      <DependentUpon>DeviceWidget.axaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Assets\img\head_cum_Lucas.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\img\head_cum_Lucia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\img\head_deny_Lucas.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\img\head_deny_Lucia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\img\head_fap2_Lucas.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\img\head_fap2_Lucia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\img\head_fap_Lucas.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\img\head_fap_Lucia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\img\head_pause_Lucas.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\img\head_pause_Lucia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\img\icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\img\iconBackButton.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\img\iconBurgerMenu.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\img\iconCancel.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\img\iconFemale.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\img\iconFolder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\img\iconFolderSub.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\img\iconMale.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\img\iconNotFound.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\img\intro_Lucas.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\img\intro_Lucia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\img\logo.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\img\logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\img\logo2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\img\stop.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\img\tick_mark.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\img\title.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>
