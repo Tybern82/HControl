@@ -1,0 +1,6 @@
+[submodule "CommandProcessor"]
+	path = CommandProcessor
+	url = https://github.com/Tybern82/CommandProcessor
+[submodule "StateManager"]
+	path = StateManager
+	url = https://github.com/Tybern82/StateManager
